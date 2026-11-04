@@ -1,5 +1,16 @@
 # LS MoldWorks
 
+## Mac’te çift tıklayarak çalıştırma
+
+Node 22, Python 3.12 ve Tesseract zaten kuruluysa:
+
+1. GitHub’dan **Code → Download ZIP** ile güncel programı indirin ve ZIP’i açın.
+2. Program klasörünün içindeki **LS-MoldWorks-Baslat.command** dosyasına çift tıklayın.
+3. İlk açılışta gerekli Python ve Electron paketleri otomatik indirilir; işlem tamamlanınca uygulama açılır. Terminal penceresini işlem sürerken kapatmayın. Komut yazmanız gerekmez.
+
+Tek başına başlatıcıyı indirecekseniz **LS-MoldWorks-Mac-Baslat.zip** dosyasını indirin ve açın. Başlatıcı program klasörünün dışında kalırsa klasörü seçmenizi ister. Bu, tam bağımsız PKG kurulumunun yerine geçen bir yükleyici değil, mevcut geliştirici kurulumunu otomatik hazırlayan başlatıcıdır. Mac güvenlik engeli gösterirse Sistem Ayarları → Gizlilik ve Güvenlik bölümünden dosyaya izin vermeniz gerekebilir.
+
+
 Yüksek basınçlı alüminyum enjeksiyon kalıpları için tek kullanıcılı teklif uygulaması prototipi. Türkçe arayüz, Türkçe/İngilizce teklif çıktısı.
 
 ## Çalıştırma
