@@ -1,0 +1,103 @@
+name: Windows ve Mac Kurulum Paketleri
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/desktop-installers.yml'
+      - 'desktop/**'
+      - 'scripts/**'
+      - 'public/**'
+      - 'assets/**'
+      - 'tests/**'
+      - 'server.mjs'
+      - 'package*.json'
+      - 'requirements-cad.txt'
+permissions:
+  contents: read
+jobs:
+  installer:
+    name: ${{ matrix.label }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            label: Windows-x64
+            arch: x64
+          - os: macos-15-intel
+            label: Mac-Intel
+            arch: x64
+          - os: macos-15
+            label: Mac-Apple-Silicon
+            arch: arm64
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          python-version: '3.12'
+          architecture: ${{ matrix.arch }}
+          activate-environment: moldworks
+          channels: conda-forge
+          channel-priority: strict
+          auto-update-conda: false
+      - name: Python, CAD ve OCR bileşenlerini hazırla
+        run: |
+          conda install --yes -n base conda-pack=0.8.1
+          conda install --yes tesseract=5.5
+          python -m pip install --requirement requirements-cad.txt
+          npm ci --no-audit --no-fund
+      - name: Hesapları ve native analizleri doğrula
+        run: |
+          npm run check
+          npm test
+          python -m unittest discover -s tests -p 'test_*.py'
+          python scripts/runtime_check.py
+      - name: Çalışma ortamını çevrimdışı pakete ekle
+        run: python scripts/pack-runtime.py
+      - name: Masaüstü yükleyicisini oluştur
+        env:
+          CSC_LINK: ${{ runner.os == 'macOS' && secrets.MAC_CSC_LINK || '' }}
+          CSC_KEY_PASSWORD: ${{ runner.os == 'macOS' && secrets.MAC_CSC_KEY_PASSWORD || '' }}
+          WIN_CSC_LINK: ${{ runner.os == 'Windows' && secrets.WINDOWS_CSC_LINK || '' }}
+          WIN_CSC_KEY_PASSWORD: ${{ runner.os == 'Windows' && secrets.WINDOWS_CSC_KEY_PASSWORD || '' }}
+          MAC_INSTALLER_IDENTITY: ${{ secrets.MAC_INSTALLER_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: npm run desktop:dist -- --${{ matrix.arch }}
+      - name: Mac kurulum paketini Apple ile doğrula
+        if: runner.os == 'macOS'
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: node scripts/notarize-installer.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.label }}
+          path: |
+            dist/*.exe
+            dist/*.pkg
+          if-no-files-found: error
+  together:
+    name: Tek indirme paketi
+    needs: installer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: installers
+          merge-multiple: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LS-MoldWorks-Windows-ve-Mac
+          path: installers
+          if-no-files-found: error

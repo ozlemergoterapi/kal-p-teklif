@@ -1,0 +1,6 @@
+const {test}=require('node:test'),assert=require('node:assert/strict');require('../public/materials.js');const base={partX:100,partY:80,edge:70,threshold:100,growth:.5,columns:1,rows:1,gap:40,quantity:2,density:7850,thickness:100,price:''};
+test('100 mm boundary, rectangular raw stock kg and missing price',()=>{const r=Materials.calculate(base);assert.equal(r.margin,70);assert.equal(r.length,240);assert.equal(r.width,220);assert.equal(r.mass,82.896);assert.equal(r.cost,null);});
+test('provisional growth, layout, override and price update',()=>{const r=Materials.calculate({...base,partX:200,columns:2,price:5});assert.equal(r.margin,120);assert.equal(r.length,680);assert.equal(r.cost,r.mass*5);const m=Materials.calculate({...base,manualX:300,price:0});assert.equal(m.length,300);assert.equal(m.cost,0);});
+test('missing thickness is not zero mass; invalid inputs rejected',()=>{assert.equal(Materials.calculate({...base,thickness:''}).mass,null);assert.ok(Materials.calculate({...base,partX:-1}).error);assert.ok(Materials.calculate({...base,quantity:1.5}).error);});
+
+test("updated margin examples above boundary",()=>{for(const [size,margin] of [[100,70],[110,75],[150,95],[200,120],[105,72.5]])assert.equal(Materials.calculate({...base,partX:size}).margin,margin);});

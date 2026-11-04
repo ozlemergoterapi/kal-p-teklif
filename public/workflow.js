@@ -1,0 +1,12 @@
+(function(root){
+const labels={draft:'Hazırlanıyor',ready:'Hazır',pending:'Onay bekliyor',approved:'Onaylandı',sent:'Gönderildi',revision:'Revizyon bekliyor',cancelled:'İptal'};
+function content(p){const {status,approval,updatedAt,readyAt,submittedAt,...quote}=p;return JSON.stringify({...quote,alternatives:quote.alternatives?.map(a=>{const {actualCosts,...estimate}=a;return estimate;})});}
+function approved(p){return p.status==='approved'&&p.approval?.version===1&&p.approval.fingerprint===content(p);}
+function invalidate(p){p.status='draft';delete p.approval;delete p.readyAt;delete p.submittedAt;}
+function issues(p){const all=QuoteTools.issues(p);if(p.quoteDate!=null&&!QuoteDates.valid(p.quoteDate))all.push({text:'Teklif tarihi geçersiz.',target:'#quote-dates'});if(!p.files.some(f=>/\.(pdf|step|stp|x_t|x_b|igs|iges|catpart|catproduct|dwg|dxf|png|jpe?g)$/i.test(f.name)))all.push({text:'En az bir 2D çizim veya 3D model gerekli.',target:'#files'});
+ if(!p.alternatives.some(a=>a.offerIncluded!==false))all.push({text:'Çıktıya en az bir alternatif dahil edilmeli.',target:'#alternatives'});for(const [i,a] of p.alternatives.filter(a=>a.offerIncluded!==false).entries()){const target=`[data-alt="${a.id}"]`;for(const text of Costing.summarize(a).issues)all.push({text:`Alternatif ${i+1}: ${text}`,target});if(!Costing.quote(a).complete)all.push({text:`Alternatif ${i+1}: döküm / trim satış tutarı eksik.`,target});for(const k of ['length','width','height'])if(!Number.isFinite(Number(a[k]))||Number(a[k])<=0)all.push({text:`Alternatif ${i+1}: geçerli kalıp ${k==='length'?'boyu':k==='width'?'eni':'yüksekliği'} gerekli.`,target});}
+ return all;
+}
+function transition(p,next,reviewed=false){if(!['ready','pending','approved'].includes(next))throw new Error('Desteklenmeyen durum.');if(next==='pending'&&p.status!=='ready')throw new Error('Önce teklifi hazır olarak kaydedin.');if(next==='approved'&&p.status!=='pending')throw new Error('Önce teklifi onaya gönderin.');const missing=issues(p);if(missing.length)throw new Error('Eksik bilgiler tamamlanmadan bu adım uygulanamaz.');if(next==='approved'&&!reviewed)throw new Error('Teklifin incelendiğini onaylayın.');p.status=next;const now=new Date().toISOString();if(next==='ready')p.readyAt=now;if(next==='pending')p.submittedAt=now;if(next==='approved')p.approval={version:1,at:now,fingerprint:content(p)};return p;}
+root.Workflow={labels,content,approved,invalidate,issues,transition};
+})(globalThis);

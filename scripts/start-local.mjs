@@ -1,0 +1,10 @@
+import {spawn} from 'node:child_process';
+import {existsSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const repo=fileURLToPath(new URL('../',import.meta.url));
+const venv=path.join(repo,'.venv-cad',process.platform==='win32'?'Scripts/python.exe':'bin/python');
+const python=process.env.LS_CAD_PYTHON||(existsSync(venv)?venv:process.platform==='win32'?'python':'python3');
+const probe=spawn(python,['-c','import OCP, numpy, reportlab, PIL, fitz, ezdxf'],{cwd:repo,stdio:'ignore'});
+probe.on('error',()=>{console.error('CAD Python bulunamadı. docs/local-deployment.md içindeki kurulumu uygulayın.');process.exitCode=1;});
+probe.on('exit',code=>{if(code!==0){console.error('CAD bağımlılıkları eksik. docs/local-deployment.md içindeki kurulumu uygulayın.');process.exitCode=1;return;}const app=spawn(process.execPath,[path.join(repo,'server.mjs')],{cwd:repo,stdio:'inherit',env:{...process.env,HOST:process.env.HOST||'127.0.0.1',LS_CAD_PYTHON:python}});for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>app.kill(signal));app.on('exit',code=>process.exitCode=code||0);});

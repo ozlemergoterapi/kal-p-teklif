@@ -1,0 +1,30 @@
+{
+  "name": "ls-moldworks",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node tests/run.cjs",
+    "test:cad": "python3 -m unittest discover -s tests -p \"test_*.py\"",
+    "start:local": "node scripts/start-local.mjs",
+    "postinstall": "node scripts/prepare-viewer.mjs",
+    "desktop:dev": "electron .",
+    "desktop:runtime": "python scripts/pack-runtime.py",
+    "desktop:dist": "electron-builder --config desktop/builder.cjs --publish never",
+    "desktop:check": "node scripts/check-desktop.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "productName": "LS MoldWorks",
+  "description": "Yüksek basınçlı alüminyum enjeksiyon kalıbı teklif uygulaması",
+  "main": "desktop/main.cjs",
+  "devDependencies": {
+    "electron": "45.2.2",
+    "electron-builder": "26.18.0"
+  }
+}

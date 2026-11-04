@@ -1,0 +1,21 @@
+.venv-cad/
+__pycache__/
+*.pyc
+node_modules/
+.local-archive/
+
+public/vendor/
+
+build/
+dist/
+*.p12
+*.pfx
+
+# Local review artifacts and customer-provided reference material
+/screenshots/
+/docs/heatsink-reference.md
+/docs/heatsink-geometry.json
+/attachments/
+.env
+.env.*
+!.env.example
