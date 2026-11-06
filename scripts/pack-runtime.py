@@ -21,6 +21,7 @@ with tempfile.TemporaryDirectory() as directory:
     subprocess.run(args,check=True)
     output.mkdir()
     with tarfile.open(archive) as tar:tar.extractall(output,filter='tar')
+if sys.platform=='darwin':subprocess.run([sys.executable,str(root/'scripts/sign-macos-runtime.py'),str(output)],check=True)
 manifest={'id':identifier,'platform':sys.platform,'arch':arch,'relocation':'fixed' if sys.platform=='darwin' else 'first-run'}
 if sys.platform=='darwin':manifest['prefix']=prefix
 (output/'runtime-pack.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
