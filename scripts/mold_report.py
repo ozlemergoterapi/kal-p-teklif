@@ -59,5 +59,5 @@ def create(payload,outfile):
         canvas.setFont('LS',7);canvas.setFillColor(colors.HexColor('#7e929e'));canvas.drawString(27,17,tr('LS MoldWorks · TEKNİK TASLAK','LS MoldWorks · TECHNICAL DRAFT'));canvas.drawRightString(815,17,tr('Sayfa','Page')+' '+str(document.page))
     doc.build(flow,onFirstPage=footer,onLaterPages=footer)
 if __name__=='__main__':
-    try:create(json.loads(Path(sys.argv[1]).read_text()),sys.argv[2])
+    try:create(json.loads(Path(sys.argv[1]).read_text(encoding='utf-8')),sys.argv[2])
     except Exception as error:print(str(error),file=sys.stderr);sys.exit(1)

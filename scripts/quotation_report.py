@@ -80,4 +80,4 @@ def create(payload,destination):
         if index<len(pages)-1:story.append(PageBreak())
     SimpleDocTemplate(str(destination),pagesize=A4,leftMargin=24,rightMargin=24,topMargin=24,bottomMargin=24,title=pages[0]['title'],author=pages[0]['company']['name']).build(story)
 
-if __name__=='__main__':create(json.loads(Path(sys.argv[1]).read_text()),sys.argv[2])
+if __name__=='__main__':create(json.loads(Path(sys.argv[1]).read_text(encoding='utf-8')),sys.argv[2])

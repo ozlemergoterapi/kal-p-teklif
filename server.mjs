@@ -3,7 +3,7 @@ import {readFile,mkdtemp,writeFile,rm} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {tmpdir} from 'node:os';
 import {spawn as spawnChild} from 'node:child_process';
-const children=new Set();function spawn(command,args,options={}){const child=spawnChild(command,args,{...options,windowsHide:true});children.add(child);child.once('close',()=>children.delete(child));return child;}
+const children=new Set();function spawn(command,args,options={}){const child=spawnChild(command,args,{...options,env:{...process.env,...options.env,PYTHONUTF8:'1',PYTHONIOENCODING:'utf-8'},windowsHide:true});children.add(child);child.once('close',()=>children.delete(child));return child;}
 for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>{for(const child of children)child.kill();process.exit(0);});
 import path from 'node:path';
 const root=path.resolve(fileURLToPath(new URL('./public/',import.meta.url)));
