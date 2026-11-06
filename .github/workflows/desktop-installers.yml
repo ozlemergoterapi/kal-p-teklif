@@ -75,6 +75,7 @@ jobs:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: node scripts/ci-run.mjs npm run desktop:dist -- --${{ matrix.arch }}
       - name: Mac paketini kur ve uygulamayı aç
+        timeout-minutes: 8
         if: runner.os == 'macOS'
         run: node scripts/ci-run.mjs node scripts/test-installed-macos.mjs
       - name: Mac kurulum paketini Apple ile doğrula
