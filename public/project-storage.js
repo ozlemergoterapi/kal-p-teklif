@@ -1,0 +1,10 @@
+(function(root){
+'use strict';
+const keys=new Set(['ls-moldworks-projects-v1','ls-moldworks-settings-v1','ls-moldworks-customers-v1']);let blocked='',versions={};const projectKey='ls-moldworks-projects-v1';
+function verify(key,value){if(value===null||!root.QuoteTools)return;const data=JSON.parse(value),frame={format:'ls-moldworks-backup',version:1,projects:[],settings:{}};if(key===projectKey)frame.projects=data;else if(key.includes('settings'))frame.settings=data;else frame.customers=data;root.QuoteTools.validateBackup(frame);}
+function getItem(key){if(!root.DesktopArchive||!keys.has(key))return localStorage.getItem(key);try{const result=root.DesktopArchive.read(key);let value=result.value;verify(key,value);if(key===projectKey)versions=result.revisions||{};if(value===null){const old=localStorage.getItem(key);if(old!==null){verify(key,old);const saved=root.DesktopArchive.set(key,old);value=saved.value;if(key===projectKey)versions=saved.revisions||{};}}return value;}catch(error){blocked=error.message;try{const cached=localStorage.getItem(key);verify(key,cached);return cached;}catch{return null;}}}
+function setItem(key,value){if(!root.DesktopArchive||!keys.has(key))return localStorage.setItem(key,value);if(blocked)throw Error(blocked);verify(key,value);const result=root.DesktopArchive.set(key,value,key===projectKey?{expectedVersions:versions,mergeMissing:true}:{});verify(key,result.value);if(key===projectKey){versions=result.revisions||{};root.dispatchEvent(new CustomEvent('ls-native-records-merged',{detail:JSON.parse(result.value||'[]')}));}try{localStorage.setItem(key,result.value);}catch{}return true;}
+function removeItem(key){if(!root.DesktopArchive||!keys.has(key))return localStorage.removeItem(key);return setItem(key,key.includes('settings')?'{}':'[]');}
+function peekItem(key){return root.DesktopArchive&&keys.has(key)?root.DesktopArchive.get(key):localStorage.getItem(key);}
+root.ProjectStorage={getItem,peekItem,setItem,removeItem,get error(){return blocked;}};
+})(window);

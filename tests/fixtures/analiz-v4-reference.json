@@ -1,0 +1,1048 @@
+[
+  {
+    "id": "v4-reference-1",
+    "pricing": {
+      "materialProfit": 5.0,
+      "hardwareProfit": 5.0,
+      "laborProfit": 20.0
+    },
+    "entries": [
+      {
+        "label": "row-1",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-2",
+        "group": "material",
+        "cost": "1362.940800"
+      },
+      {
+        "label": "row-3",
+        "group": "material",
+        "cost": "1299.66600"
+      },
+      {
+        "label": "row-4",
+        "group": "material",
+        "cost": "795.6000"
+      },
+      {
+        "label": "row-5",
+        "group": "material",
+        "cost": "549.4944"
+      },
+      {
+        "label": "row-6",
+        "group": "material",
+        "cost": "390.0"
+      },
+      {
+        "label": "row-7",
+        "group": "material",
+        "cost": "1680.0"
+      },
+      {
+        "label": "row-8",
+        "group": "material",
+        "cost": "3500"
+      },
+      {
+        "label": "row-9",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-10",
+        "group": "hardware",
+        "cost": "1500"
+      },
+      {
+        "label": "row-11",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-12",
+        "group": "passthrough",
+        "cost": "1000"
+      },
+      {
+        "label": "row-13",
+        "group": "passthrough",
+        "cost": "600"
+      },
+      {
+        "label": "row-14",
+        "group": "labor",
+        "cost": "300"
+      },
+      {
+        "label": "row-15",
+        "group": "labor",
+        "cost": "315"
+      },
+      {
+        "label": "row-16",
+        "group": "labor",
+        "cost": "375"
+      },
+      {
+        "label": "row-17",
+        "group": "labor",
+        "cost": "330"
+      },
+      {
+        "label": "row-18",
+        "group": "labor",
+        "cost": "1250"
+      },
+      {
+        "label": "row-19",
+        "group": "labor",
+        "cost": "750"
+      },
+      {
+        "label": "row-20",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-21",
+        "group": "labor",
+        "cost": "3840"
+      },
+      {
+        "label": "row-22",
+        "group": "labor",
+        "cost": "2560"
+      },
+      {
+        "label": "row-23",
+        "group": "labor",
+        "cost": "2500"
+      },
+      {
+        "label": "row-24",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-25",
+        "group": "labor",
+        "cost": "1250"
+      },
+      {
+        "label": "row-26",
+        "group": "passthrough",
+        "cost": "2500"
+      },
+      {
+        "label": "row-27",
+        "group": "passthrough",
+        "cost": "2000"
+      }
+    ],
+    "expected": {
+      "cost": "30647.701200",
+      "formulaSale": "33895.58626000",
+      "actualDifference": "3247.88506000",
+      "excelProfitIndicator": "3592.079141446187017772151867",
+      "referenceMinimum": "36777.2414400",
+      "belowMinimum": true
+    }
+  },
+  {
+    "id": "v4-reference-2",
+    "pricing": {
+      "materialProfit": 5.0,
+      "hardwareProfit": 5.0,
+      "laborProfit": 40.0
+    },
+    "entries": [
+      {
+        "label": "row-1",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-2",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-3",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-4",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-5",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-6",
+        "group": "material",
+        "cost": "0.0"
+      },
+      {
+        "label": "row-7",
+        "group": "material",
+        "cost": "0.0"
+      },
+      {
+        "label": "row-8",
+        "group": "material",
+        "cost": "0"
+      },
+      {
+        "label": "row-9",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-10",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-11",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-12",
+        "group": "passthrough",
+        "cost": "0"
+      },
+      {
+        "label": "row-13",
+        "group": "passthrough",
+        "cost": "0"
+      },
+      {
+        "label": "row-14",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-15",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-16",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-17",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-18",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-19",
+        "group": "labor",
+        "cost": "2500"
+      },
+      {
+        "label": "row-20",
+        "group": "labor",
+        "cost": "1120"
+      },
+      {
+        "label": "row-21",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-22",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-23",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-24",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-25",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-26",
+        "group": "passthrough",
+        "cost": "0"
+      },
+      {
+        "label": "row-27",
+        "group": "passthrough",
+        "cost": "2000"
+      }
+    ],
+    "expected": {
+      "cost": "5620.0000",
+      "formulaSale": "7068.000000",
+      "actualDifference": "1448.000000",
+      "excelProfitIndicator": "1821.079003558718861209964413",
+      "referenceMinimum": "6744.00000",
+      "belowMinimum": false
+    }
+  },
+  {
+    "id": "v4-reference-3",
+    "pricing": {
+      "materialProfit": 5.0,
+      "hardwareProfit": 5.0,
+      "laborProfit": 20.0
+    },
+    "entries": [
+      {
+        "label": "row-1",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-2",
+        "group": "material",
+        "cost": "3318.0000"
+      },
+      {
+        "label": "row-3",
+        "group": "material",
+        "cost": "736.4400"
+      },
+      {
+        "label": "row-4",
+        "group": "material",
+        "cost": "576.5760"
+      },
+      {
+        "label": "row-5",
+        "group": "material",
+        "cost": "390.0"
+      },
+      {
+        "label": "row-6",
+        "group": "material",
+        "cost": "1848.0"
+      },
+      {
+        "label": "row-7",
+        "group": "material",
+        "cost": "3850"
+      },
+      {
+        "label": "row-8",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-9",
+        "group": "hardware",
+        "cost": "1500"
+      },
+      {
+        "label": "row-10",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-11",
+        "group": "passthrough",
+        "cost": "1000"
+      },
+      {
+        "label": "row-12",
+        "group": "passthrough",
+        "cost": "600"
+      },
+      {
+        "label": "row-13",
+        "group": "labor",
+        "cost": "300"
+      },
+      {
+        "label": "row-14",
+        "group": "labor",
+        "cost": "315"
+      },
+      {
+        "label": "row-15",
+        "group": "labor",
+        "cost": "375"
+      },
+      {
+        "label": "row-16",
+        "group": "labor",
+        "cost": "330"
+      },
+      {
+        "label": "row-17",
+        "group": "labor",
+        "cost": "1250"
+      },
+      {
+        "label": "row-18",
+        "group": "labor",
+        "cost": "750"
+      },
+      {
+        "label": "row-19",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-20",
+        "group": "labor",
+        "cost": "4480"
+      },
+      {
+        "label": "row-21",
+        "group": "labor",
+        "cost": "1920"
+      },
+      {
+        "label": "row-22",
+        "group": "labor",
+        "cost": "4000"
+      },
+      {
+        "label": "row-23",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-24",
+        "group": "labor",
+        "cost": "1250"
+      },
+      {
+        "label": "row-25",
+        "group": "passthrough",
+        "cost": "2500"
+      },
+      {
+        "label": "row-26",
+        "group": "passthrough",
+        "cost": "2000"
+      }
+    ],
+    "expected": {
+      "cost": "33289.0160",
+      "formulaSale": "36893.966800",
+      "actualDifference": "3604.950800",
+      "excelProfitIndicator": "3995.339938279744886421394956",
+      "referenceMinimum": "39946.81920",
+      "belowMinimum": true
+    }
+  },
+  {
+    "id": "v4-reference-4",
+    "pricing": {
+      "materialProfit": 5.0,
+      "hardwareProfit": 5.0,
+      "laborProfit": 20.0
+    },
+    "entries": [
+      {
+        "label": "row-1",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-2",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-3",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-4",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-5",
+        "group": "material",
+        "cost": "0.0"
+      },
+      {
+        "label": "row-6",
+        "group": "material",
+        "cost": "0.0"
+      },
+      {
+        "label": "row-7",
+        "group": "material",
+        "cost": "0"
+      },
+      {
+        "label": "row-8",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-9",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-10",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-11",
+        "group": "passthrough",
+        "cost": "0"
+      },
+      {
+        "label": "row-12",
+        "group": "passthrough",
+        "cost": "0"
+      },
+      {
+        "label": "row-13",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-14",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-15",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-16",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-17",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-18",
+        "group": "labor",
+        "cost": "1000"
+      },
+      {
+        "label": "row-19",
+        "group": "labor",
+        "cost": "1400"
+      },
+      {
+        "label": "row-20",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-21",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-22",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-23",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-24",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-25",
+        "group": "passthrough",
+        "cost": "0"
+      },
+      {
+        "label": "row-26",
+        "group": "passthrough",
+        "cost": "2000"
+      }
+    ],
+    "expected": {
+      "cost": "4400.0000",
+      "formulaSale": "4880.000000",
+      "actualDifference": "480.000000",
+      "excelProfitIndicator": "532.3636363636363636363636359",
+      "referenceMinimum": "5280.00000",
+      "belowMinimum": true
+    }
+  },
+  {
+    "id": "v4-reference-5",
+    "pricing": {
+      "materialProfit": 5.0,
+      "hardwareProfit": 5.0,
+      "laborProfit": 20.0
+    },
+    "entries": [
+      {
+        "label": "row-1",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-2",
+        "group": "material",
+        "cost": "3318.0000"
+      },
+      {
+        "label": "row-3",
+        "group": "material",
+        "cost": "736.4400"
+      },
+      {
+        "label": "row-4",
+        "group": "material",
+        "cost": "576.5760"
+      },
+      {
+        "label": "row-5",
+        "group": "material",
+        "cost": "390.0"
+      },
+      {
+        "label": "row-6",
+        "group": "material",
+        "cost": "1848.0"
+      },
+      {
+        "label": "row-7",
+        "group": "material",
+        "cost": "3850"
+      },
+      {
+        "label": "row-8",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-9",
+        "group": "hardware",
+        "cost": "1500"
+      },
+      {
+        "label": "row-10",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-11",
+        "group": "passthrough",
+        "cost": "1000"
+      },
+      {
+        "label": "row-12",
+        "group": "passthrough",
+        "cost": "600"
+      },
+      {
+        "label": "row-13",
+        "group": "labor",
+        "cost": "300"
+      },
+      {
+        "label": "row-14",
+        "group": "labor",
+        "cost": "315"
+      },
+      {
+        "label": "row-15",
+        "group": "labor",
+        "cost": "375"
+      },
+      {
+        "label": "row-16",
+        "group": "labor",
+        "cost": "330"
+      },
+      {
+        "label": "row-17",
+        "group": "labor",
+        "cost": "1250"
+      },
+      {
+        "label": "row-18",
+        "group": "labor",
+        "cost": "750"
+      },
+      {
+        "label": "row-19",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-20",
+        "group": "labor",
+        "cost": "4480"
+      },
+      {
+        "label": "row-21",
+        "group": "labor",
+        "cost": "1920"
+      },
+      {
+        "label": "row-22",
+        "group": "labor",
+        "cost": "4000"
+      },
+      {
+        "label": "row-23",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-24",
+        "group": "labor",
+        "cost": "1250"
+      },
+      {
+        "label": "row-25",
+        "group": "passthrough",
+        "cost": "2500"
+      },
+      {
+        "label": "row-26",
+        "group": "passthrough",
+        "cost": "2000"
+      }
+    ],
+    "expected": {
+      "cost": "33289.0160",
+      "formulaSale": "36893.966800",
+      "actualDifference": "3604.950800",
+      "excelProfitIndicator": "3995.339938279744886421394956",
+      "referenceMinimum": "39946.81920",
+      "belowMinimum": true
+    }
+  },
+  {
+    "id": "v4-reference-6",
+    "pricing": {
+      "materialProfit": 5.0,
+      "hardwareProfit": 5.0,
+      "laborProfit": 20.0
+    },
+    "entries": [
+      {
+        "label": "row-1",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-2",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-3",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-4",
+        "group": "material",
+        "cost": "0.0000"
+      },
+      {
+        "label": "row-5",
+        "group": "material",
+        "cost": "0.0"
+      },
+      {
+        "label": "row-6",
+        "group": "material",
+        "cost": "0.0"
+      },
+      {
+        "label": "row-7",
+        "group": "material",
+        "cost": "0"
+      },
+      {
+        "label": "row-8",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-9",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-10",
+        "group": "hardware",
+        "cost": "0"
+      },
+      {
+        "label": "row-11",
+        "group": "passthrough",
+        "cost": "0"
+      },
+      {
+        "label": "row-12",
+        "group": "passthrough",
+        "cost": "0"
+      },
+      {
+        "label": "row-13",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-14",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-15",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-16",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-17",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-18",
+        "group": "labor",
+        "cost": "1000"
+      },
+      {
+        "label": "row-19",
+        "group": "labor",
+        "cost": "1400"
+      },
+      {
+        "label": "row-20",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-21",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-22",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-23",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-24",
+        "group": "labor",
+        "cost": "0"
+      },
+      {
+        "label": "row-25",
+        "group": "passthrough",
+        "cost": "0"
+      },
+      {
+        "label": "row-26",
+        "group": "passthrough",
+        "cost": "2000"
+      }
+    ],
+    "expected": {
+      "cost": "4400.0000",
+      "formulaSale": "4880.000000",
+      "actualDifference": "480.000000",
+      "excelProfitIndicator": "532.3636363636363636363636359",
+      "referenceMinimum": "5280.00000",
+      "belowMinimum": true
+    }
+  },
+  {
+    "id": "v4-reference-7",
+    "pricing": {
+      "materialProfit": 5.0,
+      "hardwareProfit": 5.0,
+      "laborProfit": 20.0
+    },
+    "entries": [
+      {
+        "label": "row-1",
+        "group": "material",
+        "cost": "6776.0000"
+      },
+      {
+        "label": "row-2",
+        "group": "material",
+        "cost": "6000.0000"
+      },
+      {
+        "label": "row-3",
+        "group": "material",
+        "cost": "120.0000"
+      },
+      {
+        "label": "row-4",
+        "group": "material",
+        "cost": "390.0"
+      },
+      {
+        "label": "row-5",
+        "group": "material",
+        "cost": "390.0"
+      },
+      {
+        "label": "row-6",
+        "group": "material",
+        "cost": "2400.0"
+      },
+      {
+        "label": "row-7",
+        "group": "material",
+        "cost": "4500"
+      },
+      {
+        "label": "row-8",
+        "group": "hardware",
+        "cost": "1500"
+      },
+      {
+        "label": "row-9",
+        "group": "hardware",
+        "cost": "1250"
+      },
+      {
+        "label": "row-10",
+        "group": "hardware",
+        "cost": "3000"
+      },
+      {
+        "label": "row-11",
+        "group": "passthrough",
+        "cost": "2000"
+      },
+      {
+        "label": "row-12",
+        "group": "passthrough",
+        "cost": "600"
+      },
+      {
+        "label": "row-13",
+        "group": "labor",
+        "cost": "300"
+      },
+      {
+        "label": "row-14",
+        "group": "labor",
+        "cost": "315"
+      },
+      {
+        "label": "row-15",
+        "group": "labor",
+        "cost": "375"
+      },
+      {
+        "label": "row-16",
+        "group": "labor",
+        "cost": "330"
+      },
+      {
+        "label": "row-17",
+        "group": "labor",
+        "cost": "1500"
+      },
+      {
+        "label": "row-18",
+        "group": "labor",
+        "cost": "750"
+      },
+      {
+        "label": "row-19",
+        "group": "labor",
+        "cost": "8960"
+      },
+      {
+        "label": "row-20",
+        "group": "labor",
+        "cost": "4800"
+      },
+      {
+        "label": "row-21",
+        "group": "labor",
+        "cost": "2560"
+      },
+      {
+        "label": "row-22",
+        "group": "labor",
+        "cost": "2500"
+      },
+      {
+        "label": "row-23",
+        "group": "labor",
+        "cost": "1000"
+      },
+      {
+        "label": "row-24",
+        "group": "labor",
+        "cost": "1250"
+      },
+      {
+        "label": "row-25",
+        "group": "passthrough",
+        "cost": "2500"
+      },
+      {
+        "label": "row-26",
+        "group": "passthrough",
+        "cost": "2000"
+      }
+    ],
+    "expected": {
+      "cost": "58066.0000",
+      "formulaSale": "64310.300000",
+      "actualDifference": "6244.300000",
+      "excelProfitIndicator": "6915.799371232735163434712230",
+      "referenceMinimum": "69679.20000",
+      "belowMinimum": true
+    }
+  }
+]

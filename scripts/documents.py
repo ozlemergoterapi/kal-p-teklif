@@ -39,7 +39,7 @@ def parse(text):
         if re.search(r'\b(?:no|without)\s+(?:side\s+)?cores?\b|macasiz|maca\s+(?:yok|olmayacak|istenmiyor)',line):add('core','none',line)
         if re.search(r'\b(?:no|without)\s+slides?\b|kizaksiz|kizak\s+(?:yok|olmayacak|istenmiyor)',line):add('slide','none',line)
         if re.search(r'\btrim\b|capak\s*(?:alma|kesme)',line):
-            negative=bool(re.search(r'\b(?:no|without)\s+trim|trim\s+(?:yok|haric|olmayacak|excluded|not required)',line));add('trim',not negative,line)
+            negative=bool(re.search(r'\b(?:no|without)\s+trim|trim\s+(?:yok|haric|olmayacak|excluded|(?:is\s+)?not\s+(?:required|included|requested))',line));add('trim',not negative,line)
     return findings
 
 def extract(filename):
@@ -60,6 +60,17 @@ def extract(filename):
         text=body.get_content() if body else ''
         if body and body.get_content_type()=='text/html':h=PlainHTML();h.feed(text);text='\n'.join(h.parts)
         pages=[dict(page=1,text='Subject: '+str(msg.get('Subject',''))+'\n'+text,method='email')]
+    elif suffix=='.msg':
+        import extract_msg
+        msg=extract_msg.Message(str(p))
+        try:
+            body=msg.body or ''
+            if not body and msg.htmlBody:
+                raw=msg.htmlBody
+                h=PlainHTML();h.feed(raw.decode('utf-8',errors='replace') if isinstance(raw,bytes) else raw);body='\n'.join(h.parts)
+            pages=[dict(page=1,text=('Subject: '+str(msg.subject or '')+'\n'+body)[:200000],method='outlook-msg')]
+            if msg.attachments:notes.append('Outlook e-postası metni incelendi. Eklerdeki model ve çizimleri ayrıca proje dosyası olarak yükleyin.')
+        finally:msg.close()
     elif suffix=='.txt':pages=[dict(page=1,text=p.read_text(encoding='utf-8-sig',errors='replace')[:200000],method='text')]
     elif suffix=='.dxf':
         import ezdxf
@@ -68,7 +79,7 @@ def extract(filename):
             if e.dxftype() in ['TEXT','MTEXT']:lines.append(e.dxf.text if e.dxftype()=='TEXT' else e.plain_text())
             elif e.dxftype()=='DIMENSION':lines.append('Ölçü: '+str(e.get_measurement()))
         pages=[dict(page=1,text='\n'.join(lines)[:200000],method='dxf-text')];notes.append('DXF ölçüleri görünüş/ölçek ve birim kontrolü gerektirir; çizim sınırları parça ölçüsü sayılmaz.')
-    else:raise ValueError('Belge biçimi desteklenmiyor. PDF, EML, TXT, DXF veya görüntü kullanın.')
+    else:raise ValueError('Belge biçimi desteklenmiyor. PDF, EML, MSG, TXT, DXF veya görüntü kullanın.')
     findings=[]
     for page in pages:
         for f in parse(page['text']):findings.append({**f,'page':page['page'],'method':page['method']})

@@ -48,6 +48,7 @@ jobs:
           channels: conda-forge
           channel-priority: strict
           auto-update-conda: false
+          conda-remove-defaults: true
       - name: Python, CAD ve OCR bileşenlerini hazırla
         run: |
           conda install --yes -n base conda-pack=0.8.1
@@ -56,10 +57,10 @@ jobs:
           npm ci --no-audit --no-fund
       - name: Hesapları ve native analizleri doğrula
         run: |
-          npm run check
-          npm test
+          node scripts/ci-run.mjs npm run check
+          node scripts/ci-run.mjs npm test
           python -m unittest discover -s tests -p 'test_*.py'
-          python scripts/runtime_check.py
+          node scripts/ci-run.mjs python scripts/runtime_check.py
       - name: Çalışma ortamını çevrimdışı pakete ekle
         run: python scripts/pack-runtime.py
       - name: Masaüstü yükleyicisini oluştur
@@ -72,7 +73,7 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-        run: npm run desktop:dist -- --${{ matrix.arch }}
+        run: node scripts/ci-run.mjs npm run desktop:dist -- --${{ matrix.arch }}
       - name: Mac kurulum paketini Apple ile doğrula
         if: runner.os == 'macOS'
         env:

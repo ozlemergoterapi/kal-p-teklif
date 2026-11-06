@@ -1,2 +1,5 @@
 const {contextBridge,ipcRenderer}=require('electron');
 contextBridge.exposeInMainWorld('startup',{onStatus(callback){ipcRenderer.on('startup-status',(_event,message)=>{if(typeof message==='string')callback(message);});}});
+
+const sync=(method,...args)=>{const r=ipcRenderer.sendSync('archive-sync',method,...args);if(!r?.ok)throw new Error(r?.error||'Arşiv yanıtı alınamadı.');return r.value;};
+contextBridge.exposeInMainWorld('DesktopArchive',{get:key=>sync('get',key),read:key=>sync('read',key),set:(key,value,options)=>sync('set',key,value,options),info:()=>sync('info'),select:()=>ipcRenderer.invoke('archive-select'),putFile:(hash,bytes)=>ipcRenderer.invoke('archive-putFile',hash,bytes),getFile:hash=>ipcRenderer.invoke('archive-getFile',hash),hasFile:(hash,size)=>ipcRenderer.invoke('archive-hasFile',hash,size),getOutput:(project,extension)=>ipcRenderer.invoke('archive-getOutput',project,extension),output:(project,bytes,extension)=>ipcRenderer.invoke('archive-output',project,bytes,extension)});

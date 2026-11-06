@@ -1,6 +1,6 @@
 """Installer/runtime preflight; no network and no dependency installation at runtime."""
 import importlib,subprocess,shutil,os
-for module in ['OCP','numpy','reportlab','PIL','fitz','ezdxf']:importlib.import_module(module)
+for module in ['OCP','numpy','reportlab','PIL','fitz','ezdxf','extract_msg']:importlib.import_module(module)
 from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
 assert not BRepPrimAPI_MakeBox(1,2,3).Shape().IsNull()
 ocr=shutil.which('tesseract')

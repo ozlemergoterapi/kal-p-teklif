@@ -4,19 +4,20 @@ set -eu
 console_user=$(/usr/bin/stat -f '%Su' /dev/console)
 case "$console_user" in root|loginwindow|_mbsetupuser|'')
   echo 'Masaüstü kısayolu için oturum açmış bir kullanıcı gerekli.' >&2
-  exit 1;;
+  exit 0;;
 esac
 user_home=$(/usr/bin/dscl . -read "/Users/$console_user" NFSHomeDirectory | /usr/bin/cut -d ' ' -f 2-)
-case "$user_home" in /*) ;; *) exit 1;; esac
+case "$user_home" in /*) ;; *) exit 0;; esac
 app_path='/Applications/LS MoldWorks.app'
 desktop_link="$user_home/Desktop/LS MoldWorks.app"
-if [ -e "$desktop_link" ] && [ ! -L "$desktop_link" ]; then
-  desktop_link="$user_home/Desktop/LS MoldWorks (Uygulama).app"
+index=1
+while [ -e "$desktop_link" ] && [ ! -L "$desktop_link" ]; do
+  desktop_link="$user_home/Desktop/LS MoldWorks ($index).app"
+  index=$((index + 1))
+done
+if /bin/ln -sfn "$app_path" "$desktop_link"; then
+  /usr/sbin/chown -h "$console_user" "$desktop_link" || true
+else
+  echo 'Masaüstü izni nedeniyle kısayol oluşturulamadı. Uygulamalar klasöründeki LS MoldWorks kullanılabilir.' >&2
 fi
-if [ -e "$desktop_link" ] && [ ! -L "$desktop_link" ]; then
-  echo 'Masaüstünde aynı isimli dosya var; dosya korunuyor.' >&2
-  exit 1
-fi
-/bin/ln -sfn "$app_path" "$desktop_link"
-/usr/sbin/chown -h "$console_user" "$desktop_link"
 exit 0

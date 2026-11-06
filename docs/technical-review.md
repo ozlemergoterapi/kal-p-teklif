@@ -63,3 +63,7 @@ Her alternatifin maliyet bölümündeki “Nasıl hesaplandı?” alanı ham çe
 Çelik/piston katalog fiyatları değiştirildiğinde `updatedAt` saklanır. Aynı fiyat tekrar kaydedilince tarih değişmez; eski tarihsiz kaydın geçmişi uydurulmaz. Güncel katalog tarihi ile teklife aktarılmış kaynak tarihi ayrı gösterilir. Güncel fiyatlarla hesaplama mevcut alternatifi değiştirmez; önceki revizyon/alternatif korunur. Yeni hesap eski gerçekleşen gider kaydını devralmaz.
 
 `actualCosts` her alternatifte çelik, piston, işçilik ve diğer gerçekleşen EUR giderlerini, notu, kayıt tarihini ve ilk kayıt anındaki maliyet tahminini saklar. Eksik alan sıfır sayılmaz; toplam ancak tüm gruplar tamamlanınca çıkar. Fark gerçekleşen eksi tahmindir. Bu alanlar teklif onayı parmak izinin dışında tutulur ve müşteri çıktısına eklenmez. Kayıtlar normal şirket klasörü/JSON/ZIP arşiviyle taşınır ve geri yüklemede doğrulanır. Kural değişikliği otomatik yapılmaz.
+
+## Ana fiyat yöntemi
+
+Kullanıcının güncel talimatıyla yeni fiyat aritmetiği Analiz V4'tür. V3 örnekleri tarihsel toplam fiyat/saat yanında kullanıcı talimatıyla ölçü referansı olarak da kullanılır; yöntem örnekleri doğrulanmamış parça modellerine bağlanmaz. Grup bazlı eklemeler, gerçek kâr/Excel gösterge farkı, tarifeler ve doğrulama kapsamı [analiz-v4.md](analiz-v4.md) dosyasındadır. Yeni teklifler V4, mevcut eski teklifler kendi kayıtlı yöntemleriyle hesaplanır.

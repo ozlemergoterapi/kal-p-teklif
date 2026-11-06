@@ -1,6 +1,6 @@
 {
   "name": "ls-moldworks",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "start": "node server.mjs",
@@ -26,5 +26,6 @@
   "devDependencies": {
     "electron": "45.2.2",
     "electron-builder": "26.18.0"
-  }
+  },
+  "author": "LS MoldWorks"
 }

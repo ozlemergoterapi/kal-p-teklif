@@ -1,8 +1,8 @@
 (function(){
 const key='ls-moldworks-customers-v1';let list=[];const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function reload(){try{const raw=JSON.parse(localStorage.getItem(key)||'[]');list=Array.isArray(raw)?raw:[];}catch{list=[];}}reload();
+function reload(){try{const raw=JSON.parse(ProjectStorage.getItem(key)||'[]');list=Array.isArray(raw)?raw:[];}catch{list=[];}}reload();
 const normalize=v=>v.trim().toLocaleLowerCase('tr');
-function save(){localStorage.setItem(key,JSON.stringify(list));window.dispatchEvent(new Event('ls-data-saved'));}
+function save(){ProjectStorage.setItem(key,JSON.stringify(list));window.dispatchEvent(new Event('ls-data-saved'));}
 function get(id){return structuredClone(list.find(c=>c.id===id)||null);}
 function upsert(c){if(list.some(x=>x.id!==c.id&&x.prefix===c.prefix))throw new Error('Bu firma kısaltması başka bir müşteride kullanılıyor.');if(list.some(x=>x.id!==c.id&&normalize(x.name)===normalize(c.name)))throw new Error('Bu isimle müşteri kartı zaten var.');const prior=structuredClone(list);const i=list.findIndex(x=>x.id===c.id);if(i<0)list.push(c);else list[i]=c;try{save();}catch(e){list=prior;throw e;}return c;}
 function ensure(projects){let changed=false;const old=structuredClone(list);for(const p of projects){let c=list.find(x=>x.id===p.customerId)||list.find(x=>normalize(x.name)===normalize(p.customer)&&x.prefix===p.prefix);if(!c){c={id:crypto.randomUUID(),name:p.customer,prefix:p.prefix,contact:'',email:'',phone:'',address:'',language:p.language||'tr'};list.push(c);changed=true;}if(p.customerId!==c.id){p.customerId=c.id;changed=true;}}if(changed)try{save();}catch{list=old;}return changed;}
