@@ -13,16 +13,18 @@ class QuotationReportTests(unittest.TestCase):
     def test_unicode_a4_separate_options_complete_rows_and_no_draft_after_approval(self):
         with tempfile.TemporaryDirectory() as d:
             file=Path(d)/'quote.pdf';report.create({'format':'ls-quotation-v1','language':'tr','pages':[self.page(),self.page()]},file)
-            pdf=fitz.open(file);self.assertEqual(len(pdf),2)
-            for page in pdf:
-                text=page.get_text();self.assertIn('Çekirdek 26',text);self.assertIn('Trim kalıbı',text);self.assertIn('400,00',text);self.assertIn('Ölçüler doğrulandı.',text);self.assertNotIn('ONAYLANMAMIŞ',text)
-                self.assertAlmostEqual(page.rect.width,595.2756,places=2)
-                for word in page.get_text('words'):self.assertLessEqual(word[3],page.rect.height)
+            with fitz.open(file) as pdf:
+                self.assertEqual(len(pdf),2)
+                for page in pdf:
+                    text=page.get_text();self.assertIn('Çekirdek 26',text);self.assertIn('Trim kalıbı',text);self.assertIn('400,00',text);self.assertIn('Ölçüler doğrulandı.',text);self.assertNotIn('ONAYLANMAMIŞ',text)
+                    self.assertAlmostEqual(page.rect.width,595.2756,places=2)
+                    for word in page.get_text('words'):self.assertLessEqual(word[3],page.rect.height)
     def test_english_draft_marker_and_escaped_markup(self):
         page=self.page('PRICE QUOTATION - KP26001');page['draft']='UNAPPROVED DRAFT';page['rows'][0][1]='<b>Not executable & literal</b>'
         with tempfile.TemporaryDirectory() as d:
             file=Path(d)/'draft.pdf';report.create({'format':'ls-quotation-v1','language':'en','pages':[page]},file)
-            text=fitz.open(file)[0].get_text();self.assertIn('UNAPPROVED DRAFT',text);self.assertIn('<b>Not executable & literal</b>',' '.join(text.split()))
+            with fitz.open(file) as pdf:text=pdf[0].get_text()
+            self.assertIn('UNAPPROVED DRAFT',text);self.assertIn('<b>Not executable & literal</b>',' '.join(text.split()))
     def test_external_image_urls_are_rejected(self):
         page=self.page();page['image']='https://example.com/tracker.png'
         with tempfile.TemporaryDirectory() as d:
