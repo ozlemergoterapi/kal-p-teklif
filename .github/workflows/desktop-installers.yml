@@ -51,7 +51,7 @@ jobs:
           conda-remove-defaults: true
       - name: Python, CAD ve OCR bileşenlerini hazırla
         run: |
-          conda install --yes -n base conda-pack=0.8.1
+          conda install --yes -n base conda-pack=0.8.1 setuptools=80.9.0
           conda install --yes tesseract=5.5
           python -m pip install --requirement requirements-cad.txt
           npm ci --no-audit --no-fund
