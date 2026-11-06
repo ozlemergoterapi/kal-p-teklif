@@ -28,7 +28,7 @@ jobs:
           - os: macos-15-intel
             label: Mac-Intel
             arch: x64
-          - os: macos-15
+          - os: macos-26
             label: Mac-Apple-Silicon
             arch: arm64
     runs-on: ${{ matrix.os }}
